@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqxhsy28ebsm3"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_2lt5e"]
+[ext_resource type="PackedScene" uid="uid://dlhdwvrqfy7nm" path="res://ball.tscn" id="1_4gsrl"]
+[ext_resource type="PackedScene" uid="uid://n7sfu3uc3hh" path="res://hud.tscn" id="3_q0k7a"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5l8ns"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_2lt5e")
+ball_scene = ExtResource("1_4gsrl")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.300677, 0.568716, 0.738045, 1)
+
+[node name="HUD" parent="." instance=ExtResource("3_q0k7a")]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+linear_damp_space_override = 1
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("WorldBoundaryShape2D_5l8ns")
+debug_color = Color(0.654902, 0.509804, 0.2, 0.419608)
+
+[node name="Ball" parent="." groups=["ghost_balls"] instance=ExtResource("1_4gsrl")]
+position = Vector2(400, 300)
+
+[connection signal="ball_trigger" from="Ball" to="." method="_on_ball_ball_trigger"]
+[connection signal="left_screen" from="Ball" to="." method="_on_ball_left_screen"]
+[connection signal="multiply" from="Ball" to="." method="_on_ball_multiply"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgnclskiuw74l"]
+
+[ext_resource type="Texture2D" uid="uid://cnwdhj6x7i6x" path="res://filled-circle.png" id="1_wi5im"]
+
+[node name="GhostBallSprite" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.607843)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wi5im")
